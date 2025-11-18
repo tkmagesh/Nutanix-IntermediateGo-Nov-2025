@@ -9,6 +9,9 @@ import (
 	"sync"
 )
 
+var primes []int
+var mutex sync.Mutex
+
 func main() {
 	wg := &sync.WaitGroup{}
 	start, end := 2, 100
@@ -17,6 +20,9 @@ func main() {
 		go checkIfPrime(no, wg)
 	}
 	wg.Wait()
+	for _, primeNo := range primes {
+		fmt.Printf("Prime No : %d\n", primeNo)
+	}
 	fmt.Println("Done")
 }
 
@@ -25,6 +31,11 @@ func checkIfPrime(no int, wg *sync.WaitGroup) {
 	if isPrime(no) {
 		// DO NOT print if the number is a prime number
 		// fmt.Printf("Prime No : %d\n", no)
+		mutex.Lock()
+		{
+			primes = append(primes, no)
+		}
+		mutex.Unlock()
 	}
 }
 
