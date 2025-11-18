@@ -50,5 +50,34 @@ go version
 ## Repository
 - https://github.com/tkmagesh/nutanix-intermediatego-nov-2025
 
+## Concurrency 
+
+### What is concurrency?
+`Concurrency is NOT parallelism`
+
+`Concurrent Design` is designing the application in such a way that it has more than one execution path.
+
+### Managed Concurrency
+- Builtin Scheduler in the application binary
+
+### Language Support
+- `go` keyword
+- `chan` datatype
+- `<-` operator 
+- `range` and `select-case` constructs
+
+### Standard Library Support
+- `sync` package
+- `sync/atomic` package
+
+### Synchronization
+#### sync.WaitGroup
+- Semaphore based counter
+- Has the ability to block the execution of a function until the counter becomes 0
+
+
+
+
+
 
 
