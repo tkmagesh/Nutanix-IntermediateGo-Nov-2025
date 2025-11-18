@@ -86,7 +86,42 @@ go build --race <...>
 go test --race <...>
 ```
 
+### Channels
+**Declaration**
+```go
+var <var_name> chan <data_type>
+// ex:
+var ch chan int
+```
 
+**Initialization**
+```go
+<var_name> = make(chan <data_type>)
+// ex:
+ch = make(chan int)
+```
+
+**Declaration & Initialization**
+```go
+var ch chan int = make(chan int)
+
+// type inference
+var ch = make(chan int)
+
+// use :=
+ch := make(chan int)
+```
+
+#### Communication using Channels (<- operator)
+**Send Operation**
+```go
+ch <- 100
+```
+
+**Receive Operationn**
+```go
+data := <- ch
+```
 
 
 
