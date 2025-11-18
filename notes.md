@@ -75,6 +75,17 @@ go version
 - Semaphore based counter
 - Has the ability to block the execution of a function until the counter becomes 0
 
+### Data Race
+```shell
+go run --race <...>
+```
+```shell
+go build --race <...>
+```
+```shell
+go test --race <...>
+```
+
 
 
 
