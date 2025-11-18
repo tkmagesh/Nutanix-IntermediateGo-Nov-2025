@@ -1,17 +1,29 @@
 /* convert the solution to execute the prime check logic concurrently */
+
+/*
+Approach - 1
+Modify the printIfPrime() function to execute it concurrently
+*/
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 func main() {
+	wg := &sync.WaitGroup{}
 	start, end := 2, 100
 	for no := start; no <= end; no++ {
-		printIfPrime(no)
+		wg.Add(1)
+		go printIfPrime(no, wg)
 	}
+	wg.Wait()
 	fmt.Println("Done")
 }
 
-func printIfPrime(no int) {
+func printIfPrime(no int, wg *sync.WaitGroup) {
+	defer wg.Done()
 	if isPrime(no) {
 		fmt.Printf("Prime No : %d\n", no)
 	}
