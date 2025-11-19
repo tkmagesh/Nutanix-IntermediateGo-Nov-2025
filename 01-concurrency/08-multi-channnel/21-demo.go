@@ -8,6 +8,7 @@ package main
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
 
@@ -27,6 +28,20 @@ func main() {
 		ch2 <- 200
 	}()
 
-	fmt.Println("ch1 : ", <-ch1)
-	fmt.Println("ch2 : ", <-ch2)
+	// consumers
+	wg := sync.WaitGroup{}
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		fmt.Println("ch1 : ", <-ch1)
+	}()
+
+	wg.Add(1)
+	go func() {
+		defer wg.Done()
+		fmt.Println("ch2 : ", <-ch2)
+	}()
+
+	wg.Wait()
+
 }
