@@ -123,6 +123,19 @@ ch <- 100
 data := <- ch
 ```
 
+## Context
+- Cancel Propagation (hierarchy of goroutines)
+- All context instances implement `context.Context` interface
+- Root context (no cancellation capability)
+    - `context.Background()`
+- For programmatic cancellation
+    - `context.WithCancel(...)`
+- For time-based cancellation
+    - `context.WithTimeout(...)` (relative time)
+    - `context.WithDeadline(...)` (absolute time)
+- For sharing data across context hierarchies (no cancellation capability)
+    - `context.WithValue(...)`
+
 
 
 
